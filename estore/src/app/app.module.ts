@@ -5,19 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { HeaderComponent } from './header/header.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+//import { CatnavigationComponent } from './home/components/catnavigation/catnavigation.component';
+import { HomeModule } from './home/home.module';
+import { NotFoundComponent } from './not-found/not-found.component';
+//import { HeaderComponent } from './home/components/header/header.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
-    FontAwesomeModule
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
