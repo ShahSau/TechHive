@@ -10,12 +10,14 @@ import { Category } from '../../types/category.type';
 export class SidenavigationComponent {
   categories: Category[] = [];
   constructor(categoryService: CategoryService) {
-    this.categories = categoryService.getAllCategories();
+    categoryService.getAllCategories().subscribe((categories) => {
+      this.categories = categories;
+    })
   }
 
   getCategories(parentCategoryId?: number): Category[] {
     return this.categories.filter(
-      (category) => category.parent_category_id === parentCategoryId
+      (category) => parentCategoryId ? category.parent_category_id === parentCategoryId : category.parent_category_id === null
     );
   }
 }
