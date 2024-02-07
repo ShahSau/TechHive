@@ -38,7 +38,6 @@ export const createProduct = async (req, res, next) => {
 }
 
 export const getAllProducts = async (req, res, next) => {
-    console.log("SSSS", req.query)
     
     if (req.query.maincategoryid && req.query.keyword){
         try {
