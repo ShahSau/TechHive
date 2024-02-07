@@ -1,16 +1,20 @@
 <div class="main-product-container">
-  <div *ngFor="let product of products" class="mx-4 p-3 product-card">
+  <div
+    *ngFor="let product of productsStore.products$ | async"
+    class="mx-4 p-3 product-card"
+  >
     <div class="product-image-container">
-      <img
-        [src]="'../../../../assets/images/' + product.product_img + '.jpg'"
-      />
+      <a routerLink="../product/{{product.id}}">
+        <img [src]="'../../../../assets/images/' + product.product_img" />
+      </a>
     </div>
     <div class="product-info">
       <h5>
-        <a href="#">{{ product.product_name }}</a>
+        <a routerLink="../product/{{product.id}}">{{ product.product_name }}</a>
       </h5>
       <p class="product-price">{{ product.price | currency }}</p>
-      <p><app-ratings [score]='product.ratings'></app-ratings></p>
+      <p><app-ratings [score]="product.ratings"></app-ratings></p>
     </div>
   </div>
+  <div *ngIf="!productsStore.products.length">No products found</div>
 </div>
