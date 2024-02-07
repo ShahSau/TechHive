@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import productRouter from './routes/products.route.js'
 import cors from 'cors';
-
+import authRouter from './routes/auth.route.js'
 dotenv.config()
 const app = express();
 const PORT = 5001;
@@ -31,4 +31,17 @@ app.listen(PORT, () => {
 });
 
 app.use(bodyParser.json());
+app.use('/api/auth', authRouter)
 app.use('/api/products', productRouter)
+
+
+
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500
+  const message = err.message || 'Internal Server Error'
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  })
+})
