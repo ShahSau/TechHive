@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=16 <17"
+  },
   "scripts": {
     "dev": "cd estore && npm start & cd estore-server && npm start",
     "start": "cd estore-server/built && node index.js",
