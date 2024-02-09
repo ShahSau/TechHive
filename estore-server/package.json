@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build":"npm install && tsc"
+    "build":"npm install && npm run start"
   },
   "keywords": [],
   "author": "",
