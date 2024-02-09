@@ -12,6 +12,7 @@
     "prebuild": "cd estore-server && npm run build",
     "build": "cd estore && npm run build"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ShahSau/TechHive.git"
