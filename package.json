@@ -10,7 +10,7 @@
     "dev": "cd estore && npm start & cd estore-server && npm start",
     "start": "cd estore-server/built && node index.js",
     "prebuild": "cd estore-server && npm run build",
-    "build": "cd estore && npm run build"
+    "build": "cd estore && npm install && npm run build"
   },
   "type": "module",
   "repository": {
