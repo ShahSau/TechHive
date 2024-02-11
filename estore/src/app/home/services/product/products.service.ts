@@ -11,7 +11,7 @@ export class ProductsService {
   getAllProducts(query?: string): Observable<Product[]> {
   //   return this.http.get<Product[]>('http://localhost:5001/api/products/all');
   // }
-  let url: string = 'http://localhost:5001/api/products/all';
+  let url: string = 'https://estore-backend-9kay.onrender.com/api/products/all';
     if (query) {
       url += '?' + query;
     }
@@ -19,7 +19,7 @@ export class ProductsService {
   }
 
   getProduct(id: number): Observable<Product[]> {
-    const url: string = 'http://localhost:5001/api/products/' + id;
+    const url: string = 'https://estore-backend-9kay.onrender.com/api/products/' + id;
     return this.httpClient.get<Product[]>(url);
   }
 }
