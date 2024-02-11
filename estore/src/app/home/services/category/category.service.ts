@@ -10,7 +10,7 @@ export class CategoryService {
 
   getAllCategories(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(
-      'http://estore-backend-9kay.onrender.com//api/products/categories/all'
+      'https://estore-backend-9kay.onrender.com/api/products/categories/all'
       );
   }
 }
