@@ -31,12 +31,12 @@ export class UserService {
 
 
   createUser(user: user): Observable<any> {
-    const url: string = 'http://localhost:5001/api/auth/signup';
+    const url: string = 'https://estore-backend-9kay.onrender.com/api/auth/signup';
     return this.httpClient.post(url, user);
   }
 
   login(email: string, password: string): Observable<any> {
-    const url: string = 'http://localhost:5001/api/auth/signin';
+    const url: string = 'https://estore-backend-9kay.onrender.com/api/auth/signin';
     return this.httpClient.post(url, { email: email, password: password });
   }
 
