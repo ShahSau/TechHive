@@ -64,7 +64,7 @@ export class UserSignupComponent implements OnInit {
     };
     this.userService.createUser(user).subscribe({
       next: (result) => {
-        console.log("RRRR",result);
+        
         if (result === 'User created successfully!') {
           this.alertMessage = 'User created successfully';
           this.alertType = 0;
@@ -75,7 +75,7 @@ export class UserSignupComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.log("EEEE",error);
+        
         this.alertMessage = error.error.message;
         this.alertType = 2;
       },

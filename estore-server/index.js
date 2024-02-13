@@ -5,6 +5,8 @@ import bodyParser from 'body-parser'
 import productRouter from './routes/products.route.js'
 import cors from 'cors';
 import authRouter from './routes/auth.route.js'
+import orderRouter from './routes/orders.route.js'
+
 dotenv.config()
 const app = express();
 const PORT = 5001;
@@ -33,6 +35,7 @@ app.listen(PORT, () => {
 app.use(bodyParser.json());
 app.use('/api/auth', authRouter)
 app.use('/api/products', productRouter)
+app.use('/api/orders',orderRouter)
 
 
 

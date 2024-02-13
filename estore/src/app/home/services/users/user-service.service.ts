@@ -6,6 +6,7 @@ import { user, loginToken, loggedInUser  } from 'src/app/home/types/user.type';
 @Injectable()
 export class UserService {
   private autoLogoutTimer: any;
+  private authToken:string;
   private isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject(
     false
   );
@@ -29,6 +30,10 @@ export class UserService {
     return this.loggedInUserInfo.asObservable();
   }
 
+  get token(): string {
+    return this.authToken;
+  }
+
 
   createUser(user: user): Observable<any> {
     const url: string = 'https://estore-backend-9kay.onrender.com/api/auth/signup';
@@ -50,6 +55,7 @@ export class UserService {
     this.isAuthenticated.next(true);
     this.loggedInUserInfo.next(token.user);
     this.setAutoLogoutTimer(token.expiresInSeconds * 1000);
+    this.authToken = token.token;
   }
 
   logout(): void {
@@ -71,7 +77,6 @@ export class UserService {
     if (!token || !expiry) {
       return;
     } else {
-      console.log('token', token);
       const expiresIn: number =
         new Date(expiry).getTime() - new Date().getTime();
       if (expiresIn > 0) {
@@ -88,6 +93,7 @@ export class UserService {
         this.isAuthenticated.next(true);
         this.loggedInUserInfo.next(user);
         this.setAutoLogoutTimer(expiresIn);
+        this.authToken = token;
       } else {
         this.logout();
       }

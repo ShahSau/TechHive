@@ -25,7 +25,7 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     const id: number = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.subscriptions.add(
       this.productsService.getProduct(id).subscribe((product) => {
-        console.log(product,"dddd");
+        
         this.product = product[0];
       })
     );
