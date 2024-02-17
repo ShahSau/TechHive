@@ -23,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
 import { UserService } from './services/users/user-service.service';
 import { OrderService } from './services/order/order.service';
+import { PastordersComponent } from './components/pastorders/pastorders.component';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { OrderService } from './services/order/order.service';
     CartComponent,
     UserSignupComponent,
     UserLoginComponent,
+    PastordersComponent,
   ],
   //Imports are used to make other modules available to this module
   imports: [

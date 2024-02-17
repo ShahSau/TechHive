@@ -6,7 +6,7 @@ export interface Order {
     username: string
     email: string
     address: string
-    orderItems: CartItem[]
+    orderItems: any[]
     paymentMethod: string
     totalPrice: number
     totalProducts: number
@@ -16,23 +16,7 @@ export interface Order {
    // __v: number
   }
   
-  export interface OrderItem {
-    product: Product
-    amount: number
-    quantity: number
-  }
+  export type PastOrder = Order[]
+
   
-  export interface Product {
-    //_id: string
-    id: number
-    product_name: string
-    product_img: string
-    product_description: string
-    price: number
-    ratings: number
-    category_id: number
-    keywords: string[]
-    parent_category_id: number
-    //__v: number
-  }
   

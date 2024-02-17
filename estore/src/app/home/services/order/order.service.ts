@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CartStoreItem } from '../cart/cart.storeItem';
 import { UserService } from '../users/user-service.service';
-import { Order, OrderItem } from '../../types/order.type';
+import { Order } from '../../types/order.type';
 import { DeliveryAddress } from '../../types/cart.type';
 
 
@@ -14,9 +14,9 @@ export class OrderService {
     private cartStore: CartStoreItem,
     private userservice: UserService
   ) {}
-  saveOrder(deliveryAddress: DeliveryAddress): Observable<any> {
-    
 
+
+  saveOrder(deliveryAddress: DeliveryAddress): Observable<any> {
     //const url: string = 'https://estore-backend-9kay.onrender.com/api/orders/add';
     const url: string = 'http://localhost:5001/api/orders/add';
     
@@ -32,11 +32,17 @@ export class OrderService {
       paymentMethod: 'Cash on Delivery',
       discount: false,
       orderDate: new Date().toISOString()
-
     }
     
-
     return this.httpClient.post(url, order, {
+      headers: { authorization: this.userservice.token },
+    });
+  }
+
+  getOrders(email: string): Observable<Order[]> {
+    //const url: string = 'https://estore-backend-9kay.onrender.com/api/orders';
+    const url: string = `http://localhost:5001/api/orders/get?email=${email}`;
+    return this.httpClient.get<Order[]>(url, {
       headers: { authorization: this.userservice.token },
     });
   }

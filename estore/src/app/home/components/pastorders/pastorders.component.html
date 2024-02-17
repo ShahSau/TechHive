@@ -1,0 +1,51 @@
+  <div class="row my-5 fc-main-div" *ngIf='pastOrders'>
+    <div class="col-8 p-4">
+        <div *ngFor="let product of pastOrders">
+            <div class="row order-item-card" *ngFor="let item of product.orderItems">
+                <div class="col-4">
+                    <img [src]="'../../../../assets/images/'+item.product.product_img" />
+                </div>
+                <div class="col-8">
+                    <div class="p-3 order-item-details">
+                      <span class="order-item-name">
+                        {{ item.product.productName }}
+                      </span>
+                      <div class="order-item-price">
+                        <span> {{ item.product.price | currency }} </span>
+                      </div>
+                      <hr />
+                      <span class="order-item-name"> Quantity </span>
+                      <div class="order-item-price">
+                        {{ item.quantity}}
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+            </div>
+            <div class="row">
+              <div class="px-4 py-3 my-4 order-summary">
+                <h2 class="mb-5 mt-3">Summary</h2>
+                <div>
+                  <span> Order Total : {{ product.totalPrice | currency }} </span>
+                  <span> Shipping Charges : Free </span>
+                  <hr />
+                  <span class="summary-total">
+                    Total : {{ product.totalPrice | currency }}
+                  </span>
+                  <hr />
+                </div>
+              </div>
+                
+            </div>
+        <div class="col-4">
+            <div class="row">
+              <div class="px-4 py-1 my-3 order-summary">
+                <h2 class="mb-5 mt-3">Delivery Address</h2>
+                <span>Name : {{ product.firstName }} {{product.lastName}} </span>
+                <span>Address : {{ product.address }}</span>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+  
