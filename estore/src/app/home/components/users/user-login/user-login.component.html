@@ -1,63 +1,41 @@
-<div class="container form-container">
-    <form [formGroup]="userLoginForm" (ngSubmit)="onSubmit()">
-      <div class="form-group form-group-margin">
-        <label for="email">Email*</label>
-        <input
-          type="text"
-          class="form-control"
-          id="email"
-          formControlName="email"
-        />
-        <span
-          class="text-danger"
-          *ngIf="email?.touched && email?.errors?.['required']"
-        >
-          Email is required
-        </span>
-  
-        <span
-          class="text-danger"
-          *ngIf="email?.touched && email?.errors?.['email']"
-        >
-          Enter valid email address
-        </span>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h6 class="mx-auto h-10 w-auto text-center text-lg">eStore</h6>
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="space-y-6" [formGroup]="userLoginForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+        <div class="text-sm" *ngIf="email?.touched && email?.errors?.['required']">
+          <p class="font-semibold text-red-600 ">Email is required</p>
+        </div>
+        <div class="mt-2">
+          <input id="email" formControlName="email" name="email" type="text" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
       </div>
-      <div class="form-group form-group-margin">
-        <label for="password">Password*</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          formControlName="password"
-        />
-        <span
-          class="text-danger"
-          *ngIf="password?.touched && password?.errors?.['required']"
-        >
-          Password is required
-        </span>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+        </div>
+        <div class="text-sm" *ngIf="password?.touched && password?.errors?.['required']">
+          <p class="font-semibold text-red-600 ">Password is required</p>
+        </div>
+        <div class="mt-2">
+          <input  formControlName="password" id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
       </div>
-  
-      <div class="text-center form-group-margin">
-        <button
-          type="submit"
-          class="btn btn-warning"
-          [disabled]="!userLoginForm.valid"
-        >
-          Sign In
-        </button>
-      </div>
-  
-      <div class="text-center form-group-margin">
-        Not a member? <a routerLink="../signup">Register</a>
-      </div>
-      <div
-        class="alert"
-        [ngClass]="alertType === 0 ? 'alert-success' : 'alert-danger'"
-        *ngIf="alertMessage !== ''"
-      >
-        {{ alertMessage }}
+
+      <div>
+        <button type="submit" [disabled]="!userLoginForm.valid" class="flex w-full justify-center rounded-md bg-gray-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
       </div>
     </form>
+    <p class="mt-10 text-center text-sm text-gray-500">
+       Not a member?
+      <a routerLink="../signup" class="font-semibold leading-6 text-gray-700">Register</a>
+    </p>
   </div>
-  
+</div>
+
