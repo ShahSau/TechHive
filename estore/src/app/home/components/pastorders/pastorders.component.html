@@ -1,51 +1,80 @@
-  <div class="row my-5 fc-main-div" *ngIf='pastOrders'>
-    <div class="col-8 p-4">
-        <div *ngFor="let product of pastOrders">
-            <div class="row order-item-card" *ngFor="let item of product.orderItems">
-                <div class="col-4">
-                    <img [src]="'../../../../assets/images/'+item.product.product_img" />
-                </div>
-                <div class="col-8">
-                    <div class="p-3 order-item-details">
-                      <span class="order-item-name">
-                        {{ item.product.productName }}
-                      </span>
-                      <div class="order-item-price">
-                        <span> {{ item.product.price | currency }} </span>
+<div class="*ngIf='pastOrders'">
+  <div class="py-16 sm:py-24">
+      <div class="mx-auto max-w-7xl sm:px-2 lg:px-8">
+        <div class="mx-auto max-w-2xl px-4 lg:max-w-4xl lg:px-0">
+          <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Order history</h1>
+          <p class="mt-2 text-sm text-gray-500">Past orders</p>
+        </div>
+      </div>
+  
+      <div class="mt-16">
+        <h2 class="sr-only">Recent orders</h2>
+        <div class="mx-auto max-w-7xl sm:px-2 lg:px-8">
+          <div class="mx-auto max-w-2xl space-y-8 sm:px-4 lg:max-w-4xl lg:px-0">
+            <div *ngFor="let product of pastOrders">
+              
+            <!--individual orders-->
+              <div class="border-b-8 border-t border-gray-200 bg-white shadow-sm sm:rounded-lg sm:border">
+              <h3 class="sr-only">Order placed on <time datetime="2021-07-06">{{product.orderDate.split('T')[0]}}</time></h3>
+  
+              <div class="flex items-center border-b border-gray-200 p-4 sm:grid sm:grid-cols-4 sm:gap-x-6 sm:p-6">
+                <dl class="grid flex-1 grid-cols-2 gap-x-6 text-sm sm:col-span-3 sm:grid-cols-3 lg:col-span-2">
+                  <div class=" sm:block">
+                    <dt class="font-medium text-gray-900">Date placed</dt>
+                    <dd class="mt-1 text-gray-500">
+                      <time datetime="2024-02-06">{{product.orderDate.split('T')[0]}}</time>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt class="font-medium text-gray-900">Total amount</dt>
+                    <dd class="mt-1 font-medium text-gray-900">{{product.totalPrice | currency}}</dd>
+                  </div>
+                </dl>
+              </div>
+  
+              <!-- Products -->
+              <h4 class="sr-only">Items</h4>
+              <div class="row order-item-card " *ngFor="let item of product.orderItems">
+                <ul role="list" class="divide-y divide-gray-200 ">
+                <li class="p-4 sm:p-6 ">
+                  <div class="flex items-center sm:items-start">
+                    <div class="h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-gray-200 sm:h-40 sm:w-40">
+                      <img [src]="'../../../../assets/images/'+item.product.product_img" alt="Moss green canvas compact backpack with double top zipper, zipper front pouch, and matching carry handle and backpack straps." class="h-full w-full object-cover object-center">
+                    </div>
+                    <div class="ml-6 flex-1 text-sm">
+                      <div class="font-medium text-gray-900 sm:flex sm:justify-between">
+                        <h5>{{item.product.product_name}}</h5>
+                        <p class="mt-2 sm:mt-0">{{item.product.price | currency}}</p>
                       </div>
-                      <hr />
-                      <span class="order-item-name"> Quantity </span>
-                      <div class="order-item-price">
-                        {{ item.quantity}}
+                      <p class="hidden text-gray-500 sm:mt-2 sm:block">{{item.product.product_description}}</p>
+                    </div>
+                  </div>
+  
+                  <div class="mt-2 sm:flex sm:justify-between">
+                   
+                    <div class="flex items-center">
+                      <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                      </svg>
+                      <p class="ml-2 text-sm font-medium text-gray-500">Number of {{item.product.product_name}} bought is {{item.quantity}}</p>
+                    </div>
+                    <div class=" flex items-center space-x-4 divide-x divide-gray-200 border-gray-600 pt-4 text-sm font-medium sm:ml-4 sm:mt-0 sm:border-none sm:pt-0">
+                      <div class="flex flex-1 justify-center">
+                        <a routerLink="../product/{{item.product.id}}" class="whitespace-nowrap text-gray-700  hover:text-gray-500">View product</a>
                       </div>
                     </div>
                   </div>
-                  <hr />
-            </div>
-            <div class="row">
-              <div class="px-4 py-3 my-4 order-summary">
-                <h2 class="mb-5 mt-3">Summary</h2>
-                <div>
-                  <span> Order Total : {{ product.totalPrice | currency }} </span>
-                  <span> Shipping Charges : Free </span>
-                  <hr />
-                  <span class="summary-total">
-                    Total : {{ product.totalPrice | currency }}
-                  </span>
-                  <hr />
-                </div>
+                </li>
+  
+                <!-- More products... -->
+                </ul>
               </div>
-                
-            </div>
-        <div class="col-4">
-            <div class="row">
-              <div class="px-4 py-1 my-3 order-summary">
-                <h2 class="mb-5 mt-3">Delivery Address</h2>
-                <span>Name : {{ product.firstName }} {{product.lastName}} </span>
-                <span>Address : {{ product.address }}</span>
+
               </div>
             </div>
           </div>
-    </div>
+        </div>
+      </div>
   </div>
+</div>
   
