@@ -2,9 +2,12 @@
     <div class="p-4 ec-main-div">
       <span class="my-5 ec-text"> The Cart Is Empty </span>
       <hr />
-      <div class="btn btn-warning my-3" (click)='navigateToHome()' >
-        <span style="font-weight:500"> Continue Shopping </span>
+      <div class="d-flex align-items-center justify-content-center nf-container">
+        <div class="w-1/5 mt-4 cursor-pointer rounded-md border border-transparent bg-gray-500 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2  focus:ring-offset-2 focus:ring-offset-gray-50" (click)='navigateToHome()' >
+          <span style="font-weight:500"> Continue Shopping </span>
+        </div>
       </div>
+      
       <div
         class="alert"
         [ngClass]="alertType === 0 ? 'alert-success' : 'alert-danger'"
@@ -14,143 +17,127 @@
       </div>
     </div>
   </ng-container>
-  <ng-container *ngIf="cartStore.cart$ | async as cart">
-    <div class="row my-5 fc-main-div">
-      <div class="col-8 p-4">
-        <div class="row cart-item-card" *ngFor="let cartItem of cart.products">
-          <div class="col-4">
-            <img
-              [src]="'../../../../assets/images/' + cartItem.product.product_img"
-            />
-          </div>
-          <div class="col-8">
-            <div class="p-3 cart-item-details">
-              <span class="cart-item-name">
-                {{ cartItem.product.product_name }}
-              </span>
-              <div class="cart-item-price">
-                <span> {{ cartItem.product.price | currency }} </span>
+
+<ng-container *ngIf="cartStore.cart$ | async as cart">
+<div class="bg-white" *ngIf="cartStore.cart.products.length">
+  <div class="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Shopping Cart</h1>
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
+      <section aria-labelledby="cart-heading" class="lg:col-span-7">
+        <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
+        <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+          <div *ngFor="let cartItem of cart.products">
+            <li class="flex py-6 sm:py-10">
+              <div class="flex-shrink-0">
+                <img [src]="'../../../../assets/images/' + cartItem.product.product_img" alt="Front of men&#039;s Basic Tee in sienna." class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48">
               </div>
-              <app-ratings [score]="cartItem.product.ratings"></app-ratings>
-              <hr />
-              <div class="cart-edit-container">
-                <div
-                  class="btn-group mx-3"
-                  (click)="updateQuantity($event, cartItem)"
-                >
-                  <div class="btn btn-outline-dark">
-                    <span> - </span>
+              <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                  <div>
+                    <div class="flex justify-between">
+                      <h3 class="text-sm">
+                        <a href="#" class="font-medium text-gray-700 hover:text-gray-800">{{ cartItem.product.product_name }}</a>
+                      </h3>
+                    </div>
+                    <div class="mt-1 flex text-sm">
+                      <p class="text-gray-500">Sienna</p>
+                      <p class="ml-4 border-l border-gray-200 pl-4 text-gray-500">Large</p>
+                    </div>
+                    <p class="mt-1 text-sm font-medium text-gray-900">{{ cartItem.product.price | currency }}</p>
                   </div>
-                  <div class="btn">{{ cartItem.quantity }}</div>
-                  <div class="btn btn-outline-dark">
-                    <span> + </span>
-                  </div>
-                </div>
-                <div
-                  class="btn btn-outline-danger mx-4"
-                  (click)="removeItem(cartItem)"
-                >
-                  <span> <fa-icon [icon]="faTrash"></fa-icon> Remove Item </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr />
-        </div>
-      </div>
-      <!-- Cart Summary -->
-      <div class="col-4">
-        <ng-container *ngIf="cartStore.cart.products.length">
-          <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
-            <div class="row">
-              <div class="px-4 py-1 my-3 cart-summary">
-                <h2 class="mb-5 mt-3">Delivery Address</h2>
-                <div class="form-group row field-margin">
-                  <label for="firstName" class="col-sm-2 col-form-label">first Name</label>
-                  <div class="col-sm-10">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="firstName"
-                      formControlName="firstName"
-                    />
-                  </div>
-                </div>
-                <div class="form-group row field-margin">
-                  <label for="lastName" class="col-sm-2 col-form-label">last Name</label>
-                  <div class="col-sm-10">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="lastName"
-                      formControlName="lastName"
-                    />
-                  </div>
-                </div>
-                <div class="form-group row field-margin">
-                  <label for="userName" class="col-sm-2 col-form-label">User Name</label>
-                  <div class="col-sm-10">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="userName"
-                      formControlName="userName"
-                    />
-                  </div>
-                </div>
-                <div class="form-group row field-margin">
-                  <label for="address" class="col-sm-2 col-form-label"
-                    >Address</label
-                  >
-                  <div class="col-sm-10">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="address"
-                      formControlName="address"
-                    />
-                  </div>
-                </div>
-                <div class="form-group row field-margin">
-                  <label for="email" class="col-sm-2 col-form-label">email</label>
-                  <div class="col-sm-10">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="email"
-                      formControlName="email"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-    
-            <div class="row">
-              <div
-                class="px-4 py-3 my-4 cart-summary"                
-              >
-                <h2 class="mb-5 mt-3">Summary</h2>
-                <div>
-                  <span> Cart Total : {{ cart.totalAmount | currency }} </span>
-                  <span> Shipping Charges : Free </span>
-                  <hr />
-                  <span class="summary-total">
-                    Total : {{ cart.totalAmount | currency }}
-                  </span>
-                  <hr />
-                </div>
-                <button
-                  type="submit"
-                  class="btn submit-button"
-                  [disabled]="!orderForm.valid || disableCheckout"
-                >
-                  Checkout
-                </button>
-              </div>
-            </div>
-          </form>
-      </ng-container>
-      </div>
-    </div>
-  </ng-container>
   
+                  <div class="mt-4 sm:mt-0 sm:pr-9">
+                    <div
+                      class="btn-group mx-1"
+                      (click)="updateQuantity($event, cartItem)"
+                    >
+                      <div class="btn btn-outline-dark">
+                        <span> - </span>
+                      </div>
+                      <div class="btn">{{ cartItem.quantity }}</div>
+                      <div class="btn btn-outline-dark">
+                        <span> + </span>
+                      </div>
+                    </div>
+  
+                    <div class="absolute right-0 top-0">
+                      <button type="button" (click)="removeItem(cartItem)" class="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">Remove</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </div>
+        </ul>
+      </section>
+
+     
+      <section aria-labelledby="summary-heading" class="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
+        <h2 id="summary-heading" class="text-lg font-medium text-gray-900">Order summary</h2>
+
+        <dl class="mt-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <dt class="text-sm text-gray-600">Subtotal</dt>
+            <dd class="text-sm font-medium text-gray-900">{{ cart.totalAmount | currency }}</dd>
+          </div>
+          <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+            <dt class="flex items-center text-sm text-gray-600">
+              <span>Shipping Cost</span>
+            </dt>
+            <dd class="text-sm font-medium text-gray-900">Free</dd>
+          </div>
+          <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+            <dt class="text-base font-medium text-gray-900">Order total</dt>
+            <dd class="text-base font-medium text-gray-900">{{cart.totalAmount | currency}}</dd>
+          </div>
+        </dl>
+        <br />
+        <div class="mt-6">
+          <h2 id="summary-heading" class="text-lg font-medium text-gray-900 mb-4">Shipping Address</h2>
+          <div class="mt-4">
+            <label for="firstName" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
+            <div class="mt-1">         
+              <input formControlName="firstName" id="firstName" name="firstName" type="text" autocomplete="firstName" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6">
+            </div>
+          </div>
+          <div class="mt-4">
+            <label for="lastName" class="block text-sm font-medium leading-6 text-gray-900">Last Name</label>
+            <div class="mt-1">
+              <input formControlName="lastName" id="lastName" name="lastName" type="text" autocomplete="lastName" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6">
+            </div>
+          </div>
+          <div class="mt-4">
+            <label for="userName" class="block text-sm font-medium leading-6 text-gray-900">user Name</label>
+            <div class="mt-1">        
+              <input formControlName="userName" id="userName" name="userName" type="userName" autocomplete="userName" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6">
+            </div>
+          </div>
+          <div class="mt-4">
+            <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address </label>
+            <div class="mt-1">       
+              <input formControlName="address" id="address" name="address" type="text" autocomplete="address" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6">
+            </div>
+          </div>
+          <div class="mt-4">
+            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+            <div class="mt-2">     
+              <input formControlName="email" id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6">
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="mt-6">
+          <button type="submit" [disabled]="!orderForm.valid || disableCheckout" class="w-full rounded-md border border-transparent bg-gray-500 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2  focus:ring-offset-2 focus:ring-offset-gray-50">Checkout</button>
+        </div>
+      </section>
+    </form>
+  </div>
+</div>
+
+</ng-container>
