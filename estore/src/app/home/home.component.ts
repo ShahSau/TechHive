@@ -11,18 +11,20 @@ import { filter } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  displayOptions: boolean = false;
   constructor(
     private categoriesStoreItem: CategoriesStoreItem,
     private productsStoreItem: ProductsStoreItem,
-    private router: Router
+    private router: Router,
     ) {
     this.categoriesStoreItem.loadCategories();
     this.productsStoreItem.loadProducts();
     router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
+        this.displayOptions = (event as NavigationEnd).url === '/home' ? true : false;
         if ((event as NavigationEnd).url === '/home') {
-          router.navigate(['/home/products']);
+          router.navigate(['/home']);
         }
       });
   }
