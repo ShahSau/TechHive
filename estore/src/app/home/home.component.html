@@ -1,13 +1,14 @@
 <!-- <app-header (searchClicked)="onSearchKeyword($event)"></app-header>
 <app-catnavigation (categoryClicked)="onSelectCategory($event)"></app-catnavigation>
-<h1>dgdgdgdgdgdg</h1>
 <router-outlet></router-outlet> -->
 
+
+<app-header (searchClicked)="onSearchKeyword($event)"></app-header>
 <router-outlet></router-outlet>
 <div class="bg-white" *ngIf="displayOptions">
     <header class="relative overflow-hidden">
       <!-- Top navigation -->
-      <app-header (searchClicked)="onSearchKeyword($event)"></app-header>
+      <!-- <app-header (searchClicked)="onSearchKeyword($event)"></app-header> -->
       <!-- Hero section -->
       <div class="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
         <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
@@ -67,37 +68,6 @@
             <span aria-hidden="true"> &rarr;</span>
           </a>
         </div>
-  
-        <!-- <div class="mt-4 flow-root">
-          <div class="-my-2">
-            <div class="relative box-content h-80 overflow-x-auto py-2 xl:overflow-visible">
-              <div class="absolute flex space-x-8 px-4 sm:px-6 lg:px-8 xl:relative xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-x-0 xl:px-0">
-                <a href="#" class="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto">
-                  <span aria-hidden="true" class="absolute inset-0">
-                    <img src="https://images.unsplash.com/flagged/photo-1577996693134-e50d294a665f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="h-full w-full object-cover object-center">
-                  </span>
-                  <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"></span>
-                  <span class="relative mt-auto text-center text-xl font-bold text-white">Men</span>
-                </a>
-                <a href="#" class="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto">
-                  <span aria-hidden="true" class="absolute inset-0">
-                    <img src="https://images.unsplash.com/photo-1595231712612-754e8fe9d29b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTh8fGluZGlhbiUyMGNsb3RoaW5nc3xlbnwwfHwwfHx8MA%3D%3D" alt="" class="h-full w-full object-cover object-center">
-                  </span>
-                  <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"></span>
-                  <span class="relative mt-auto text-center text-xl font-bold text-white">Women</span>
-                </a>
-                <a href="#" class="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg p-6 hover:opacity-75 xl:w-auto">
-                  <span aria-hidden="true" class="absolute inset-0">
-                    <img src="https://images.unsplash.com/photo-1571908599407-cdb918ed83bf?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="h-full w-full object-cover object-center">
-                  </span>
-                  <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"></span>
-                  <span class="relative mt-auto text-center text-xl font-bold text-white">Accessories</span>
-                </a>
-                
-              </div>
-            </div>
-          </div>
-        </div> -->
         <app-catnavigation (categoryClicked)="onSelectCategory($event)"></app-catnavigation>
         <div class="mt-6 px-4 sm:hidden">
           <a href="#" class="block text-sm font-semibold text-gray-600 hover:text-gray-500">
