@@ -63,14 +63,14 @@
       <section aria-labelledby="category-heading" class="pt-24 sm:pt-32 xl:mx-auto xl:max-w-7xl xl:px-8 mb-12">
         <div class="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
           <h2 id="category-heading" class="text-2xl font-bold tracking-tight text-gray-900">Shop by Category</h2>
-          <a href="#" class="hidden text-sm font-semibold text-gray-600 hover:text-gray-500 sm:block">
+          <a routerLink="./products" class="hidden text-sm font-semibold text-gray-600 hover:text-gray-500 sm:block">
             Browse all categories
             <span aria-hidden="true"> &rarr;</span>
           </a>
         </div>
         <app-catnavigation (categoryClicked)="onSelectCategory($event)"></app-catnavigation>
         <div class="mt-6 px-4 sm:hidden">
-          <a href="#" class="block text-sm font-semibold text-gray-600 hover:text-gray-500">
+          <a routerLink="./products" class="block text-sm font-semibold text-gray-600 hover:text-gray-500">
             Browse all categories
             <span aria-hidden="true"> &rarr;</span>
           </a>

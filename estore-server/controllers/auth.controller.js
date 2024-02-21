@@ -45,3 +45,47 @@ export const signOut = async (req, res, next) => {
       next(error)
     }
 }
+
+
+export const allUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+} catch (error) {
+    res.status(400).json({ message: error.message });
+}
+}
+
+export const blockUser = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+    if(user.role === 'admin'){
+        return res.status(400).json({ message: "Admin cannot be blocked" });
+    }
+    if(user.blocked){
+        return res.status(400).json({ message: "User is already blocked" });
+    }
+    user.blocked = true;
+    await user.save();
+    res.status(200).json({message:"User has been blocked"});
+}catch (error) {
+    res.status(400).json({ message: error.message });
+}
+}
+
+export const unblockUser = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+    user.blocked = false;
+    await user.save();
+    res.status(200).json({message:"User has been unblocked"});
+}catch (error) {
+    res.status(400).json({ message: error.message });
+}
+}

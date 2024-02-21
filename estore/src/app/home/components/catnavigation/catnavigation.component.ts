@@ -27,7 +27,8 @@ export class CatnavigationComponent {
     }
 
 
-  onCategoryClick(category:Category):void {
+  onCategoryClick(category:any):void {
+    console.log('category clicked', category);
     this.categoryClicked.emit(category.id);
   }
 }
