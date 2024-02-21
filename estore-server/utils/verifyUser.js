@@ -19,7 +19,6 @@ export const isAdmin = async (req, res, next) => {
   const token = req.headers.authorization;
   const decoded = jwt.decode(token);
   const user =  await User.find({ _id: decoded.id});
-  console.log(user[0]);
   if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
   if (user[0].role !== 'admin') return next(errorHandler(403, 'Forbidden'));
 

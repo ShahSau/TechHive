@@ -89,3 +89,73 @@ export const unblockUser = async (req, res, next) => {
     res.status(400).json({ message: error.message });
 }
 }
+
+export const addToFavroute = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+  const decoded = jwt.decode(token);
+  const user =  await User.find({ _id: decoded.id});
+  if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
+  user[0].favorites.push(req.body.productId);
+  await user[0].save();
+  res.status(200).json({message:"Product has been added to favroute"});
+}
+catch (error) {
+  res.status(400).json({ message: error.message });
+}
+}
+
+export const removeFromFavroute = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+  const decoded = jwt.decode(token);
+  const user =  await User.find({ _id: decoded.id});
+  if (user.length ===0 ) {
+    return next(errorHandler(404, 'User not found!'));
+  }else{
+    if(user[0].favorites.length === 0) {
+      return next(errorHandler(404, 'No product in favroute'));
+    }else{
+      if(!user[0].favorites.includes(req.body.productId)) {
+        return next(errorHandler(404, 'Product not found in favroute'));
+      }else{
+        user[0].favorites = user[0].favorites.filter((id) => id !== req.body.productId);
+        await user[0].save();
+        res.status(200).json({message:"Product has been removed from favroute"});
+      }
+    }
+  }
+}
+catch (error) {
+  res.status(400).json({ message: error.message });
+}
+}
+
+export const getAllFavroute = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+  const decoded = jwt.decode(token);
+  const user =  await User.find({ _id: decoded.id});
+  if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
+  res.status(200).json(user[0].favorites);
+}
+catch (error) {
+  res.status(400).json({ message: error.message });
+}
+}
+
+export const updateUser = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+  const decoded = jwt.decode(token);
+  const user =  await User.find({ _id: decoded.id});
+  if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
+  await User.findByIdAndUpdate(decoded.id, { $set: req.body });
+  const updatedUser = await User.findById(decoded.id);
+  console.log(updatedUser);
+  res.status(200).json({message:"User has been updated", user: updatedUser});
+}
+catch (error) {
+  res.status(400).json({ message: error.message });
+}
+}

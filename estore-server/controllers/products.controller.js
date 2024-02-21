@@ -20,6 +20,15 @@ export const getCategories = async (req, res, next) => {
     }
 }
 
+export const deleteCategories = async (req, res, next) => {
+    try {
+        await Category.deleteOne({ id: req.params.id });
+        res.status(200).json({ message: 'Category deleted' });
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
 export const createProduct = async (req, res, next) => {
     try {
         const product = new Products(req.body);
