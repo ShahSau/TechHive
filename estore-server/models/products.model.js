@@ -22,10 +22,27 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    // once we start getting the new data this(ratings) will be removed
     ratings: {
         type: Number,
         required: true,
     },
+    totalRatings:{
+        type: Number,
+        default: 0,
+    },
+    numberOfVaotes:{
+        type: Number,
+        default: 0,
+    },
+    commentsList: [{
+        commenter: {
+            type: String,
+        },
+        comment: {
+            type: String,
+        },
+    }],
     category_id: {
         type: Number,
         required: true,
@@ -38,6 +55,7 @@ const productSchema = new mongoose.Schema({
         type: String,
     }]
     });
+
 
 const Products = mongoose.model('Product', productSchema);
 

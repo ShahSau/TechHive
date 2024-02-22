@@ -152,7 +152,6 @@ export const updateUser = async (req, res, next) => {
   if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
   await User.findByIdAndUpdate(decoded.id, { $set: req.body });
   const updatedUser = await User.findById(decoded.id);
-  console.log(updatedUser);
   res.status(200).json({message:"User has been updated", user: updatedUser});
 }
 catch (error) {

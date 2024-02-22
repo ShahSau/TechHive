@@ -5,21 +5,27 @@ import {
     deleteCategories,
     createProduct,
     getAllProducts,
-    getProductById
+    getProductById,
+    updateProduct,
+    deleteProduct,
+    updateRating,
+    updateComment
  } from '../controllers/products.controller.js';
-import { isAdmin } from '../utils/verifyUser.js';
+import { isAdmin, verifyToken } from '../utils/verifyUser.js';
 
 
 
 const router = express.Router();
-router.get('/categories/all', getCategories)
+router.get('/categories/all',verifyToken ,getCategories)
 router.post('/categories/add',isAdmin ,createCategories)
 router.delete('/categories/delete/:id',isAdmin ,deleteCategories)
-router.get('/all', getAllProducts)
-router.get('/:id', getProductById)
+router.get('/all', verifyToken,getAllProducts)
+router.get('/:id', verifyToken,getProductById)
 router.post('/add',isAdmin ,createProduct)
-// router.put('/update/:id',isAdmin ,updateProduct)
-// router.delete('/delete/:id',isAdmin ,deleteProduct)
+router.put('/update/:id',isAdmin ,updateProduct)
+router.delete('/delete/:id',isAdmin ,deleteProduct)
+router.post('/update-rating', verifyToken,updateRating)
+router.post('/update-comment', verifyToken,updateComment)
 
 
 
