@@ -42,6 +42,9 @@ const productSchema = new mongoose.Schema({
         comment: {
             type: String,
         },
+        ratings: {
+            type: Number,
+        }
     }],
     category_id: {
         type: Number,

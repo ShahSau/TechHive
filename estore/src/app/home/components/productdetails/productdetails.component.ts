@@ -5,6 +5,7 @@ import { Product } from '../../types/products.type';
 import { Subscription } from 'rxjs';
 import { faShoppingCart, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { CartStoreItem } from '../../services/cart/cart.storeItem';
+// import { loggedInUser} from '../../types/user.type'
 
 @Component({
   selector: 'app-productdetails',
@@ -12,6 +13,9 @@ import { CartStoreItem } from '../../services/cart/cart.storeItem';
   styleUrls: ['./productdetails.component.scss'],
 })
 export class ProductdetailsComponent implements OnInit, OnDestroy {
+  stars: number[] = [1, 2, 3, 4, 5];
+  selectedValue: number = 0;
+  comments: string = '';
   product: Product;
   subscriptions: Subscription = new Subscription();
   faShoppingCart = faShoppingCart;
@@ -21,12 +25,37 @@ export class ProductdetailsComponent implements OnInit, OnDestroy {
     private cart: CartStoreItem
   ) {}
 
-  ngOnInit(): void {
+  productDeatis (): void {
     const id: number = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.subscriptions.add(
       this.productsService.getProduct(id).subscribe((product) => {
-        
         this.product = product[0];
+      })
+    );
+  }
+
+  ngOnInit(): void {
+    this.productDeatis();
+  }
+
+  countStar(star:number) {
+    
+    this.selectedValue = star;
+    this.productDeatis();
+  }
+
+  onCommentChange(value: any) {
+    const user = localStorage.getItem('user');
+    this.subscriptions.add(
+      this.productsService.commentOnProduct(this.product.id, value, user, this.selectedValue).subscribe({
+        next: (data) => {
+          this.comments = '';
+          this.selectedValue = 0;
+          this.productDeatis();
+        },
+        error: (error) => {
+          console.error('There was an error!', error);
+        },
       })
     );
   }

@@ -1,3 +1,9 @@
+export interface Comment {
+    commenter: string;
+    comment: string;
+    rating:number;
+}
+
 export interface Product {
     id: number;
     product_name: string;
@@ -6,4 +12,7 @@ export interface Product {
     ratings: number;
     product_description: string;
     category_id: number;
+    totalRatings: number;
+    numberOfVaotes: number;
+    commentsList: Comment[];
 }

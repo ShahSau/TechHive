@@ -16,11 +16,11 @@ import { isAdmin, verifyToken } from '../utils/verifyUser.js';
 
 
 const router = express.Router();
-router.get('/categories/all',verifyToken ,getCategories)
+router.get('/categories/all',getCategories)
 router.post('/categories/add',isAdmin ,createCategories)
 router.delete('/categories/delete/:id',isAdmin ,deleteCategories)
-router.get('/all', verifyToken,getAllProducts)
-router.get('/:id', verifyToken,getProductById)
+router.get('/all',getAllProducts)
+router.get('/:id',getProductById)
 router.post('/add',isAdmin ,createProduct)
 router.put('/update/:id',isAdmin ,updateProduct)
 router.delete('/delete/:id',isAdmin ,deleteProduct)
