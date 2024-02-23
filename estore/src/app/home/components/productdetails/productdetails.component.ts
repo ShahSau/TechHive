@@ -5,7 +5,6 @@ import { Product } from '../../types/products.type';
 import { Subscription } from 'rxjs';
 import { faShoppingCart, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { CartStoreItem } from '../../services/cart/cart.storeItem';
-// import { loggedInUser} from '../../types/user.type'
 
 @Component({
   selector: 'app-productdetails',
