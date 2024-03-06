@@ -34,7 +34,6 @@ export class ProductsService {
     // const url: string = 'http://localhost:5001/api/products/' + id + '/comment';
     // return this.httpClient.post(url, { comment });
     user = JSON.parse(user);
-    console.log('Comment on product', id, comment, user.username, star);
     const url: string = 'http://localhost:5001/api/products/update-comment';
     const newcomment = {
       id: id,
@@ -48,4 +47,35 @@ export class ProductsService {
       headers: { authorization: this.userservice.token },
     });
   }
+
+  addToFavourites(id:number): Observable<any> {
+    const url: string = 'http://localhost:5001/api/auth/favroute';
+    const productId  = {
+      productId: id
+    }
+    return this.httpClient.post(url, productId, {
+      headers: { authorization: this.userservice.token },
+    });
+  }
+
+  removeFromFavourites(id:number): Observable<any> {
+    const url: string = 'http://localhost:5001/api/auth/unfavroute';
+    const productId  = {
+      productId: id
+    }
+    return this.httpClient.post( url,productId, {
+      headers: { authorization: this.userservice.token }
+    });
+  }
+
+  getFavourites(): Observable<any> {
+    const url: string = 'http://localhost:5001/api/auth/favroutes';
+    return this.httpClient.get(url, {
+      headers:{authorization: this.userservice.token}
+    });
+  }
+
 }
+
+
+

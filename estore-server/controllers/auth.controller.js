@@ -2,6 +2,7 @@ import User from '../models/user.model.js'
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { errorHandler } from '../utils/error.js'
+import Product from '../models/products.model.js'
 
 export const signup = async (req, res, next) => {
   const { username, email, password, firstName, lastName, address } = req.body
@@ -91,18 +92,22 @@ export const unblockUser = async (req, res, next) => {
 }
 
 export const addToFavroute = async (req, res, next) => {
+ 
   try {
     const token = req.headers.authorization;
-  const decoded = jwt.decode(token);
-  const user =  await User.find({ _id: decoded.id});
-  if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
-  user[0].favorites.push(req.body.productId);
-  await user[0].save();
-  res.status(200).json({message:"Product has been added to favroute"});
-}
-catch (error) {
-  res.status(400).json({ message: error.message });
-}
+    const decoded = jwt.decode(token);
+    const user =  await User.find({ _id: decoded.id});
+    if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
+    if(user[0].favorites.includes(req.body.productId)) {
+      return next(errorHandler(400, 'Product already in favroute'));
+    }
+    user[0].favorites.push(req.body.productId);
+    await user[0].save();
+    res.status(200).json({message:"Product has been added to favroute"});
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 }
 
 export const removeFromFavroute = async (req, res, next) => {
@@ -134,14 +139,16 @@ catch (error) {
 export const getAllFavroute = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
-  const decoded = jwt.decode(token);
-  const user =  await User.find({ _id: decoded.id});
-  if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
-  res.status(200).json(user[0].favorites);
-}
-catch (error) {
-  res.status(400).json({ message: error.message });
-}
+    const decoded = jwt.decode(token);
+    const user =  await User.find({ _id: decoded.id});
+    if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
+    const products = await Product.find({ id: { $in: user[0].favorites } });
+    console.log(products);
+    res.status(200).json(products);
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 }
 
 export const updateUser = async (req, res, next) => {

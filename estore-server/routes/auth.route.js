@@ -23,7 +23,7 @@ router.post('/block-user', isAdmin,blockUser)
 router.post('/unblock-user', isAdmin,unblockUser)
 router.post('/favroute', verifyToken, addToFavroute)
 router.post('/unfavroute', verifyToken, removeFromFavroute)
-router.get('/favroute', verifyToken, getAllFavroute)
+router.get('/favroutes', verifyToken, getAllFavroute)
 router.post('/update-user', verifyToken, updateUser)
 
 

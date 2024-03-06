@@ -80,6 +80,10 @@ export class HeaderComponent implements OnDestroy {
   pastOrders(): void {
     this.router.navigate(['home/pastorders']);
   }
+
+  favourites(): void {
+    this.router.navigate(['home/favourites']);
+  }
   
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

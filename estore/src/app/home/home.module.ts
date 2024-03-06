@@ -24,8 +24,9 @@ import { UserLoginComponent } from './components/users/user-login/user-login.com
 import { UserService } from './services/users/user-service.service';
 import { OrderService } from './services/order/order.service';
 import { PastordersComponent } from './components/pastorders/pastorders.component';
-
-
+import { FavouritiesComponent } from './favourities/favourities.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -39,6 +40,7 @@ import { PastordersComponent } from './components/pastorders/pastorders.componen
     UserSignupComponent,
     UserLoginComponent,
     PastordersComponent,
+    FavouritiesComponent,
   ],
   //Imports are used to make other modules available to this module
   imports: [
@@ -48,7 +50,9 @@ import { PastordersComponent } from './components/pastorders/pastorders.componen
     HttpClientModule,
     RouterModule,
     HomeRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTooltipModule,
+    MatButtonModule
   ],
   //Providers are used to make services available to the module
   providers: [

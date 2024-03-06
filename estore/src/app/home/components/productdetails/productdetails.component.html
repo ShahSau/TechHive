@@ -4,8 +4,27 @@
     <!-- Product details -->
     <div class="lg:max-w-lg lg:self-end">
       <div class="mt-4">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"> {{ product.product_name }}</h1>
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+           {{ product.product_name }} 
+           <span class="text-gray-700">by brand</span>
+
+           <ng-container mat-raised-button
+            matTooltip="Add to Favourites"
+            aria-label="" *ngIf="!isFavourite">
+              <span class="text-gray-500 ml-6 cursor-pointer" (click)="addToFavourites()">
+                <fa-icon class="user-icon" [icon]="faHeart"></fa-icon>
+              </span>
+          </ng-container>
+          <ng-container mat-raised-button
+            matTooltip="Add to Favourites"
+            aria-label="" *ngIf="isFavourite">
+              <span class="text-gray-500 ml-6  cursor-pointer" (click)="removeFromFavourites()">
+                <fa-icon class="user-icon" [icon]="faHeart" [style.color]="'red'"></fa-icon>
+              </span>
+          </ng-container>
+        </h1>
       </div>
+      
 
       <section aria-labelledby="information-heading" class="mt-4">
         <h2 id="information-heading" class="sr-only">Product information</h2>
@@ -90,7 +109,7 @@
                         <textarea id="comment" #titleInput placeholder="comment" class="w-full bg-gray-100 rounded border border-gray-400 leading-normal resize-none h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"></textarea>
                     </div>
                     <div class="flex justify-end px-4">
-                        <button (click)="onCommentChange(titleInput.value);titleInput.value=''" type="button" class="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500">Comment</button>
+                        <button (click)="onCommentChange(titleInput.value);titleInput.value=''" type="button" class="px-2.5 py-1.5 rounded-md text-white text-sm bg-black">Comment</button>
                     </div>
                   </form>
               </div>
