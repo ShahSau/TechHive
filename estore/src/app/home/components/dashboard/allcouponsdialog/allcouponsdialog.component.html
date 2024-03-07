@@ -1,0 +1,38 @@
+
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 w-full">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Add coupon</h2>
+    </div>
+  
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" [formGroup]="couponForm">
+        <div>
+          <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Coupon Code</label>
+          <div class="mt-2">
+            <input formControlName="name" id="name" name="name" type="name" autocomplete="name" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+  
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="discount" class="block text-sm font-medium leading-6 text-gray-900">Discount(%)</label>
+          </div>
+          <div class="mt-2">
+            <input formControlName="discount" id="discount" name="discount" type="discount" placeholder="5" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+        <div>
+            <div class="flex items-center justify-between">
+              <label for="expires" class="block text-sm font-medium leading-6 text-gray-900">Expires</label>
+            </div>
+            <div class="mt-2">
+              <input formControlName="expiry" id="expires" name="expires" type="expires" autocomplete="current-expires" placeholder="01-12-2024" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+  
+        <div>
+          <button type="button" [mat-dialog-close]="true" (click)="onSubmit()" class="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>

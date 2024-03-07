@@ -139,6 +139,20 @@ export class UserService {
     });
   }
 
+  getAllCoupons(): Observable<any> {
+    const url: string = 'http://localhost:5001/api/coupon';
+    return this.httpClient.get(url, {
+      headers:{authorization: this.token}
+    });
+  }
+
+  addCoupon(coupon: any): Observable<any> {
+    const url: string = 'http://localhost:5001/api/coupon';
+    return this.httpClient.post(url, coupon, {
+      headers: { authorization: this.token },
+    });
+  }
+
 }
 
 

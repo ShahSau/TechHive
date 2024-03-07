@@ -31,6 +31,9 @@ import { MeComponent } from './components/users/me/me.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AllusersComponent } from './components/dashboard/allusers/allusers.component';
 import { AlloedersComponent } from './components/dashboard/alloders/alloeders.component';
+import { AllcouponsComponent } from './components/dashboard/allcoupons/allcoupons.component';
+import { AllcouponsdialogComponent } from './components/dashboard/allcouponsdialog/allcouponsdialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -49,6 +52,8 @@ import { AlloedersComponent } from './components/dashboard/alloders/alloeders.co
     DashboardComponent,
     AllusersComponent,
     AlloedersComponent,
+    AllcouponsComponent,
+    AllcouponsdialogComponent,
   ],
   //Imports are used to make other modules available to this module
   imports: [
@@ -60,7 +65,9 @@ import { AlloedersComponent } from './components/dashboard/alloders/alloeders.co
     HomeRoutingModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
+
   ],
   //Providers are used to make services available to the module
   providers: [

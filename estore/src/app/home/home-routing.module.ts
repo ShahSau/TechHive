@@ -13,6 +13,7 @@ import {MeComponent} from './components/users/me/me.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AllusersComponent } from './components/dashboard/allusers/allusers.component';
 import { AlloedersComponent } from './components/dashboard/alloders/alloeders.component';
+import { AllcouponsComponent } from './components/dashboard/allcoupons/allcoupons.component';
 
 
 const routes: Routes = [
@@ -70,6 +71,11 @@ const routes: Routes = [
       {
         path: 'admin/alloders',
         component: AlloedersComponent,
+        canActivate: [adminGuard],
+      },
+      {
+        path: 'admin/allcoupons',
+        component: AllcouponsComponent,
         canActivate: [adminGuard],
       },
       // {
