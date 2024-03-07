@@ -33,3 +33,17 @@ export const getPastOrders = async (req, res, next) => {
         res.status(400).json({ message: error.message });
     }
 }
+
+export const getAllOrders = async (req, res, next) => {
+    try {
+        const orders = await Orders.find();
+        if (!orders) {
+            return res.status(404).json({ message: "No orders found" });
+        }else{
+            res.status(200).json(orders);
+        
+        }
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}

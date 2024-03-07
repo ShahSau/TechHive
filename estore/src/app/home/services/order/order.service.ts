@@ -46,4 +46,12 @@ export class OrderService {
       headers: { authorization: this.userservice.token },
     });
   }
+
+  getOrdersForAdmin(): Observable<Order[]> {
+    //const url: string = 'https://estore-backend-9kay.onrender.com/api/orders';
+    const url: string = `http://localhost:5001/api/orders/getallorders`;
+    return this.httpClient.get<Order[]>(url, {
+      headers: { authorization: this.userservice.token },
+    });
+  }
 }

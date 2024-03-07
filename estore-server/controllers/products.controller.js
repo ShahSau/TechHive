@@ -36,7 +36,6 @@ export const createProduct = async (req, res, next) => {
         const category = await Category.findOne({
             id: req.body.category_id
         });
-        console.log("DDDDD",category);
         if (!category) {
             return res.status(404).json({ message: 'Parent category not found' });
         }

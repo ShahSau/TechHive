@@ -3,7 +3,7 @@ import { errorHandler } from './error.js';
 import User from '../models/user.model.js';
 
 export const verifyToken = (req, res, next) => {
-  console.log("DDDDD",req.headers.authorization)
+
     try {
       const token = req.headers.authorization;
       if (!token) return next(errorHandler(401, 'Unauthorized'))

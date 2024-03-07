@@ -30,6 +30,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { MeComponent } from './components/users/me/me.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AllusersComponent } from './components/dashboard/allusers/allusers.component';
+import { AlloedersComponent } from './components/dashboard/alloders/alloeders.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -47,6 +48,7 @@ import { AllusersComponent } from './components/dashboard/allusers/allusers.comp
     MeComponent,
     DashboardComponent,
     AllusersComponent,
+    AlloedersComponent,
   ],
   //Imports are used to make other modules available to this module
   imports: [
