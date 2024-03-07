@@ -27,6 +27,7 @@ import { PastordersComponent } from './components/pastorders/pastorders.componen
 import { FavouritiesComponent } from './favourities/favourities.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
+import { MeComponent } from './components/users/me/me.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -41,6 +42,7 @@ import {MatButtonModule} from '@angular/material/button';
     UserLoginComponent,
     PastordersComponent,
     FavouritiesComponent,
+    MeComponent,
   ],
   //Imports are used to make other modules available to this module
   imports: [

@@ -9,7 +9,7 @@ import { UserLoginComponent } from './components/users/user-login/user-login.com
 import { PastordersComponent } from './components/pastorders/pastorders.component';
 import { FavouritiesComponent } from './favourities/favourities.component';
 import { authGuard } from './services/authguard';
-
+import {MeComponent} from './components/users/me/me.component';
 const routes: Routes = [
   {
     path: '',
@@ -32,6 +32,11 @@ const routes: Routes = [
       {
         path: 'signup',
         component: UserSignupComponent,
+      },
+      {
+        path: 'me',
+        component: MeComponent,
+        canActivate:[authGuard]
       },
       {
         path: 'login',

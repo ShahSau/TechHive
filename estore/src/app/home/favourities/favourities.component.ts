@@ -20,7 +20,6 @@ export class FavouritiesComponent implements OnInit, OnDestroy {
   favourities(): void {
     this.subscriptions.add(
       this.ProductsService.getFavourites().subscribe((products) => {
-        console.log(products);
         this.products = products;
       })
     );

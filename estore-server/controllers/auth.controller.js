@@ -154,14 +154,19 @@ export const getAllFavroute = async (req, res, next) => {
 export const updateUser = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
-  const decoded = jwt.decode(token);
-  const user =  await User.find({ _id: decoded.id});
-  if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
-  await User.findByIdAndUpdate(decoded.id, { $set: req.body });
-  const updatedUser = await User.findById(decoded.id);
-  res.status(200).json({message:"User has been updated", user: updatedUser});
-}
-catch (error) {
-  res.status(400).json({ message: error.message });
-}
+    const decoded = jwt.decode(token);
+    const user =  await User.find({ _id: decoded.id});
+    if (user.length ===0 ) return next(errorHandler(404, 'User not found!'));
+
+    if(req.body.password !== ''){
+      const hashedPassword = bcryptjs.hashSync(req.body.password, 10);
+      req.body.password = hashedPassword;
+    }
+    await User.findByIdAndUpdate(decoded.id, { $set: req.body });
+    const updatedUser = await User.findById(decoded.id);
+    res.status(200).json({message:"User has been updated", user: updatedUser});
+  }
+  catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 }

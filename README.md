@@ -1,1 +1,1 @@
-# TechHive
+# ShopHive

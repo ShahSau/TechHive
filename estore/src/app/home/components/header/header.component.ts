@@ -81,6 +81,10 @@ export class HeaderComponent implements OnDestroy {
     this.router.navigate(['home/pastorders']);
   }
 
+  mePage(): void {
+    this.router.navigate(['home/me']);
+  }
+
   favourites(): void {
     this.router.navigate(['home/favourites']);
   }

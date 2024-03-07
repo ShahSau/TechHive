@@ -72,6 +72,9 @@
 
               </div>
             </div>
+            <div class="flex justify-center mt-8" *ngIf="!pastOrders.length">
+              <a routerLink="/home/products" class="text-gray-700  hover:text-gray-500">Back to products</a>
+            </div>
           </div>
         </div>
       </div>

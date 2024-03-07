@@ -49,6 +49,13 @@ export class UserService {
     return this.httpClient.post(url, { email: email, password: password });
   }
 
+  updateUserInfo(user: user): Observable<any> {
+    const url: string = 'http://localhost:5001/api/auth/update-user';
+    return this.httpClient.post(url, user, {
+      headers: { authorization: this.token },
+    });
+  }
+
   activateToken(token: loginToken): void {
     localStorage.setItem('token', token.token);
     localStorage.setItem(
