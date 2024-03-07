@@ -1,0 +1,45 @@
+<div class="px-4 sm:px-6 lg:px-8 mt-10">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-base font-semibold leading-6 text-gray-900">Users</h1>
+        <p class="mt-2 text-sm text-gray-700">A list of all the users including their name, address, email.</p>
+      </div>
+    </div>
+    <div class="mt-8 flow-root">
+      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8" >
+           
+          <table class="min-w-full divide-y divide-gray-300">
+            <thead>
+              <tr>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">username</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Firstname</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Lastname</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Address</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">email</th>
+                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                  <span >Status</span>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200" *ngFor="let user of users">
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{{user.username}}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{user.firstName}}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{user.lastName}}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{user.address}}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{user.email}}</td>
+                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                    <div *ngIf="user.blocked">
+                        <button (click)="unblockUser(user.email)" class="text-green-600 hover:text-green-500 bg-green-200 px-2.5 py-1 rounded-full">unblock</button>
+                    </div>
+                    <div *ngIf="!user.blocked">
+                        <button (click)="blockUser(user.email)" class="text-red-600 hover:text-red-500 bg-red-200 px-2.5 py-1 rounded-full">block</button>
+                    </div>
+                  </td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

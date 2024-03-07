@@ -11,6 +11,8 @@ import { FavouritiesComponent } from './favourities/favourities.component';
 import { authGuard, adminGuard } from './services/authguard';
 import {MeComponent} from './components/users/me/me.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AllusersComponent } from './components/dashboard/allusers/allusers.component';
+
 
 const routes: Routes = [
   {
@@ -57,6 +59,11 @@ const routes: Routes = [
       {
         path: 'admin',
         component: DashboardComponent,
+        canActivate: [adminGuard],
+      },
+      {
+        path: 'admin/allusers',
+        component: AllusersComponent,
         canActivate: [adminGuard],
       },
       // {

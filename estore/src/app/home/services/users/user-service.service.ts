@@ -118,6 +118,27 @@ export class UserService {
     }
   }
 
+  getAllusers(): Observable<any> {
+    const url: string = 'http://localhost:5001/api/auth/all-uesers';
+    return this.httpClient.get(url, {
+      headers:{authorization: this.token}
+    });
+  }
+
+  blockUser(email: string): Observable<any> {
+    const url: string = 'http://localhost:5001/api/auth/block-user';
+    return this.httpClient.post(url, { email: email }, {
+      headers: { authorization: this.token },
+    });
+  }
+
+  unblockUser(email: string): Observable<any> {
+    const url: string = 'http://localhost:5001/api/auth/unblock-user';
+    return this.httpClient.post(url, { email: email }, {
+      headers: { authorization: this.token },
+    });
+  }
+
 }
 
 

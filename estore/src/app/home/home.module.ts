@@ -29,6 +29,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import { MeComponent } from './components/users/me/me.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AllusersComponent } from './components/dashboard/allusers/allusers.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -45,6 +46,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FavouritiesComponent,
     MeComponent,
     DashboardComponent,
+    AllusersComponent,
   ],
   //Imports are used to make other modules available to this module
   imports: [
