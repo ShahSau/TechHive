@@ -24,4 +24,5 @@ export interface loggedInUser {
     address: string;
     email: string;
     username: string;
+    role?: string;
 }

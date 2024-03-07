@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { user, loginToken, loggedInUser  } from 'src/app/home/types/user.type';
 
 @Injectable()
@@ -36,6 +36,12 @@ export class UserService {
 
   get token(): string {
     return this.authToken;
+  }
+
+  get isAdmin$(): Observable<boolean> {
+    return this.loggedInUserInfo.asObservable().pipe(
+      map((user) => user.role === 'admin')
+    )
   }
 
 
@@ -99,6 +105,7 @@ export class UserService {
           firstName: userStorage ? JSON.parse(userStorage).firstName : '',
           lastName: userStorage ? JSON.parse(userStorage).lastName : '',
           address: userStorage ? JSON.parse(userStorage).address : '',
+          role: userStorage ? JSON.parse(userStorage).role : '',
         };
 
         this.isAuthenticated.next(true);

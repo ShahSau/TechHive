@@ -8,8 +8,10 @@ import { UserSignupComponent } from './components/users/user-signup/user-signup.
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
 import { PastordersComponent } from './components/pastorders/pastorders.component';
 import { FavouritiesComponent } from './favourities/favourities.component';
-import { authGuard } from './services/authguard';
+import { authGuard, adminGuard } from './services/authguard';
 import {MeComponent} from './components/users/me/me.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -51,7 +53,12 @@ const routes: Routes = [
         path: 'favourites',
         component: FavouritiesComponent,
         canActivate:[authGuard]
-      }
+      },
+      {
+        path: 'admin',
+        component: DashboardComponent,
+        canActivate: [adminGuard],
+      },
       // {
       //   path: '',
       //   redirectTo: 'products',

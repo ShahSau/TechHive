@@ -15,3 +15,13 @@ export const authGuard = (next: ActivatedRouteSnapshot) => {
       )
     );
 };
+
+export const adminGuard = (next: ActivatedRouteSnapshot) => {
+  return inject(UserService)
+    .isAdmin$
+    .pipe(
+      map((isAdmin) =>
+        isAdmin ? true : createUrlTreeFromSnapshot(next, ['/', 'home'])
+      )
+    );
+}

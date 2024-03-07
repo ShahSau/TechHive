@@ -77,7 +77,7 @@ export class MeComponent implements OnInit, OnDestroy{
     const updatedUser: any = {
       firstName: this.firstName?.value || this.loggedInUser.firstName,
       lastName: this.lastName?.value || this.loggedInUser.lastName,
-      address: this.userForm.get('address')?.value,
+      address: this.address?.value || this.loggedInUser.address,
       username: this.username?.value || this.loggedInUser.username,
       email: this.email?.value || this.loggedInUser.email,
       password: this.password?.value || '',

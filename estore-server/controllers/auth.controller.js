@@ -162,6 +162,9 @@ export const updateUser = async (req, res, next) => {
       const hashedPassword = bcryptjs.hashSync(req.body.password, 10);
       req.body.password = hashedPassword;
     }
+    if (req.body.password === '') {
+      req.body.password = user[0].password;
+    }
     await User.findByIdAndUpdate(decoded.id, { $set: req.body });
     const updatedUser = await User.findById(decoded.id);
     res.status(200).json({message:"User has been updated", user: updatedUser});
